@@ -1,0 +1,129 @@
+@import 'tailwindcss';
+
+/* BPSHC drip font — listed free for commercial use, no formal license text embedded */
+@font-face {
+  font-family: 'BPSHC';
+  src: url('../assets/fonts/bpshc.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* -------------------------------------------------------------------------- */
+/*  Design tokens                                                             */
+/*  Tailwind v4 reads these @theme values and generates matching utilities    */
+/*  (e.g. bg-brand-500, text-accent-400, font-display, max-w-page).           */
+/* -------------------------------------------------------------------------- */
+@theme {
+  /* Brand green (primary actions, accents) */
+  --color-brand-50: #eef9ee;
+  --color-brand-100: #d5f0d6;
+  --color-brand-200: #ace0ae;
+  --color-brand-300: #79c87d;
+  --color-brand-400: #4bb050;
+  --color-brand-500: #33a03a;
+  --color-brand-600: #2a8531;
+  --color-brand-700: #246b2a;
+  --color-brand-800: #205625;
+  --color-brand-900: #1c4721;
+
+  /* Gold / amber accent (highlights, deals, "Perfection.") */
+  --color-accent-50: #fef8e6;
+  --color-accent-100: #fceabb;
+  --color-accent-200: #f9d77e;
+  --color-accent-300: #f6c344;
+  --color-accent-400: #f4b41a;
+  --color-accent-500: #e39f0d;
+  --color-accent-600: #bd7c0c;
+  --color-accent-700: #965f0f;
+
+  /* Dark hero / surfaces */
+  --color-hero: #0f120d;
+  --color-hero-soft: #171b14;
+
+  /* Warm dark ink for body text */
+  --color-ink: #1a1a17;
+
+  /* Typography */
+  --font-sans: 'Inter Variable', ui-sans-serif, system-ui, sans-serif;
+  --font-display: 'Poppins', 'Inter Variable', ui-sans-serif, system-ui, sans-serif;
+
+  /* Responsive container max width -> generates the `max-w-page` utility */
+  --container-page: 80rem; /* 1280px */
+}
+
+/* -------------------------------------------------------------------------- */
+/*  Base / global typography                                                  */
+/* -------------------------------------------------------------------------- */
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    @apply bg-white font-sans text-ink antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-display font-bold tracking-tight text-ink;
+    text-wrap: balance;
+  }
+
+  h1 {
+    @apply text-4xl leading-[1.05] sm:text-5xl lg:text-6xl;
+  }
+  h2 {
+    @apply text-3xl leading-tight sm:text-4xl;
+  }
+  h3 {
+    @apply text-2xl leading-snug sm:text-3xl;
+  }
+  h4 {
+    @apply text-xl leading-snug sm:text-2xl;
+  }
+
+  p {
+    @apply leading-relaxed;
+    text-wrap: pretty;
+  }
+
+  a {
+    @apply transition-colors duration-200;
+  }
+
+  :focus-visible {
+    @apply outline-none ring-2 ring-brand-500 ring-offset-2;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+  }
+}
+
+/* Shimmer sweep used by the hero's accent headline */
+@keyframes hero-shimmer {
+  0% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 200% 50%;
+  }
+}
+
+/* Utility: hide scrollbar (horizontal scrollers on mobile) */
+@utility no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
