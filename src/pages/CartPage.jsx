@@ -46,18 +46,22 @@ export default function CartPage() {
                   variants={fadeInUp}
                   className="flex flex-col gap-4 rounded-2xl bg-white p-4 shadow-sm ring-1 ring-black/5 transition-shadow hover:shadow-md sm:flex-row sm:items-center"
                 >
-                  <FoodImage
-                    src={line.product.image}
-                    emoji={line.product.emoji}
-                    alt={line.product.name}
-                    className="h-20 w-20 shrink-0 rounded-xl ring-1 ring-black/5"
-                  />
+                  <div className="flex min-w-0 flex-1 items-center gap-4">
+                    <FoodImage
+                      src={line.product.image}
+                      emoji={line.product.emoji}
+                      alt={line.product.name}
+                      className="h-20 w-20 shrink-0 rounded-xl ring-1 ring-black/5"
+                    />
 
-                  <div className="min-w-0 flex-1">
-                    <h3 className="truncate text-base font-bold text-ink">{line.product.name}</h3>
-                    <p className="text-sm text-neutral-500">
-                      {formatCurrency(line.product.price)} each
-                    </p>
+                    <div className="min-w-0 flex-1">
+                      <h3 className="truncate text-base font-bold text-ink">
+                        {line.product.name}
+                      </h3>
+                      <p className="text-sm text-neutral-500">
+                        {formatCurrency(line.product.price)} each
+                      </p>
+                    </div>
                   </div>
 
                   <div className="flex items-center justify-between gap-4 sm:justify-end">

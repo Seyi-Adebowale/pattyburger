@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { AnimatePresence, motion } from 'framer-motion'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faHeart as faHeartSolid, faPlus, faMinus, faCheck } from '@fortawesome/free-solid-svg-icons'
 import { faHeart as faHeartOutline } from '@fortawesome/free-regular-svg-icons'
@@ -105,17 +106,34 @@ export default function ProductCard({ product, className, showBadge = true }) {
             <span className="text-lg font-extrabold text-ink">
               {formatCurrency(product.price)}
             </span>
-            <button
-              type="button"
-              onClick={handleAdd}
-              aria-label={`Add ${product.name} to cart`}
-              className={cn(
-                'grid h-10 w-10 cursor-pointer place-items-center rounded-full text-white shadow-sm transition-all hover:scale-105 active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2',
-                added ? 'bg-brand-600' : 'bg-brand-500 hover:bg-brand-600',
-              )}
-            >
-              <FontAwesomeIcon icon={added ? faCheck : faPlus} />
-            </button>
+            <div className="relative">
+              <AnimatePresence>
+                {added && (
+                  <motion.span
+                    initial={{ opacity: 0, y: 0, scale: 0.8 }}
+                    animate={{ opacity: 1, y: -22, scale: 1 }}
+                    exit={{ opacity: 0, y: -34 }}
+                    transition={{ duration: 0.6, ease: 'easeOut' }}
+                    className="pointer-events-none absolute inset-x-0 top-0 text-center text-sm font-bold text-brand-600"
+                  >
+                    +1
+                  </motion.span>
+                )}
+              </AnimatePresence>
+              <motion.button
+                type="button"
+                onClick={handleAdd}
+                aria-label={`Add ${product.name} to cart`}
+                animate={added ? { scale: [1, 1.2, 1] } : { scale: 1 }}
+                transition={{ duration: 0.4, ease: 'easeOut' }}
+                className={cn(
+                  'grid h-10 w-10 cursor-pointer place-items-center rounded-full text-white shadow-sm transition-colors hover:scale-105 active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2',
+                  added ? 'bg-brand-600' : 'bg-brand-500 hover:bg-brand-600',
+                )}
+              >
+                <FontAwesomeIcon icon={added ? faCheck : faPlus} />
+              </motion.button>
+            </div>
           </div>
         </div>
       </Card>
@@ -133,8 +151,8 @@ export default function ProductCard({ product, className, showBadge = true }) {
           <h2 className="text-xl text-ink">{product.name}</h2>
           <p className="text-sm text-neutral-600">{product.description}</p>
 
-          <div className="mt-3 flex items-center justify-between gap-8">
-            <div className="flex shrink-0 items-center gap-2 rounded-full border border-neutral-200 p-1">
+          <div className="mt-3 flex flex-col gap-3 min-[480px]:flex-row min-[480px]:items-center min-[480px]:justify-between min-[480px]:gap-8">
+            <div className="flex shrink-0 items-center gap-2 self-start rounded-full border border-neutral-200 p-1">
               <button
                 type="button"
                 onClick={() => setModalQty((q) => Math.max(1, q - 1))}
@@ -154,26 +172,43 @@ export default function ProductCard({ product, className, showBadge = true }) {
               </button>
             </div>
 
-            <button
-              type="button"
-              onClick={handleModalAdd}
-              className={cn(
-                'flex w-64 cursor-pointer items-center justify-between gap-2 rounded-full px-6 py-3 text-base font-semibold text-white shadow-sm transition-all hover:scale-[1.02] active:scale-95',
-                added ? 'bg-brand-600' : 'bg-brand-500 hover:bg-brand-600',
-              )}
-            >
-              {added ? (
-                <span className="mx-auto flex items-center gap-2">
-                  <FontAwesomeIcon icon={faCheck} />
-                  Added
-                </span>
-              ) : (
-                <>
-                  <span>Add to Cart</span>
-                  <span>{formatCurrency(product.price * modalQty)}</span>
-                </>
-              )}
-            </button>
+            <div className="relative">
+              <AnimatePresence>
+                {added && (
+                  <motion.span
+                    initial={{ opacity: 0, y: 0, scale: 0.8 }}
+                    animate={{ opacity: 1, y: -26, scale: 1 }}
+                    exit={{ opacity: 0, y: -38 }}
+                    transition={{ duration: 0.6, ease: 'easeOut' }}
+                    className="pointer-events-none absolute inset-x-0 top-0 text-center text-sm font-bold text-brand-600"
+                  >
+                    Added to cart!
+                  </motion.span>
+                )}
+              </AnimatePresence>
+              <motion.button
+                type="button"
+                onClick={handleModalAdd}
+                animate={added ? { scale: [1, 1.05, 1] } : { scale: 1 }}
+                transition={{ duration: 0.4, ease: 'easeOut' }}
+                className={cn(
+                  'flex w-full cursor-pointer items-center justify-between gap-2 rounded-full px-6 py-3 text-base font-semibold text-white shadow-sm transition-colors hover:scale-[1.02] active:scale-95 min-[480px]:w-64',
+                  added ? 'bg-brand-600' : 'bg-brand-500 hover:bg-brand-600',
+                )}
+              >
+                {added ? (
+                  <span className="mx-auto flex items-center gap-2">
+                    <FontAwesomeIcon icon={faCheck} />
+                    Added
+                  </span>
+                ) : (
+                  <>
+                    <span>Add to Cart</span>
+                    <span>{formatCurrency(product.price * modalQty)}</span>
+                  </>
+                )}
+              </motion.button>
+            </div>
           </div>
         </div>
       </Modal>
