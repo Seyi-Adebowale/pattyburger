@@ -62,7 +62,7 @@ export default function Navbar() {
       )}
     >
       <Container>
-        <nav className="flex h-16 items-center justify-between lg:h-20">
+        <nav className="flex h-20 items-center justify-between lg:h-24">
           <Logo tone={tone} />
 
           {/* Desktop links */}
@@ -106,14 +106,14 @@ export default function Navbar() {
         {open && (
           <>
             <motion.div
-              className="fixed inset-0 top-16 z-40 bg-black/40 lg:hidden"
+              className="fixed inset-0 top-20 z-40 bg-black/40 lg:hidden"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               onClick={() => setOpen(false)}
             />
             <motion.div
-              className="fixed inset-x-0 top-16 z-40 border-b border-neutral-200 bg-white lg:hidden"
+              className="fixed inset-x-0 top-20 z-40 border-b border-neutral-200 bg-white lg:hidden"
               initial={{ opacity: 0, y: -12 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -12 }}

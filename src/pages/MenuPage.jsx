@@ -73,7 +73,7 @@ export default function MenuPage() {
       <PageHero title="Our Menu" image={MENU_IMAGE} />
 
       {/* Sticky search + category nav */}
-      <div className="sticky top-16 z-30 border-b border-neutral-200 bg-white/95 backdrop-blur-md lg:top-20">
+      <div className="sticky top-20 z-30 border-b border-neutral-200 bg-white/95 backdrop-blur-md lg:top-24">
         <Container className="flex flex-col gap-4 py-4">
           <div className="relative">
             <FontAwesomeIcon

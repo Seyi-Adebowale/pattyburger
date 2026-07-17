@@ -9,12 +9,15 @@ import { formatCurrency } from '@/lib/format'
 import { PATHS } from '@/routes/paths'
 import { fadeInUp, staggerContainer } from '@/lib/motion'
 
+const CART_IMAGE =
+  'https://images.unsplash.com/photo-1550547660-d9450f859349?auto=format&fit=crop&w=1800&q=80'
+
 export default function CartPage() {
   const { lines, count, subtotal, setQuantity, removeItem } = useCart()
 
   return (
     <>
-      <PageHero title="Your Cart" />
+      <PageHero title="Your Cart" image={CART_IMAGE} />
 
       <Section spacing="lg">
         {lines.length === 0 ? (
