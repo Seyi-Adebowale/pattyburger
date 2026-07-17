@@ -19,7 +19,7 @@ export default function CartPage() {
     <>
       <PageHero title="Your Cart" image={CART_IMAGE} />
 
-      <Section spacing="lg">
+      <Section spacing="lg" className="!pt-8 lg:!pt-10">
         {lines.length === 0 ? (
           <div className="flex flex-col items-center gap-4 py-16 text-center">
             <span className="grid h-16 w-16 place-items-center rounded-full bg-brand-50 text-2xl text-brand-500">
@@ -44,17 +44,17 @@ export default function CartPage() {
                 <motion.div
                   key={line.productId}
                   variants={fadeInUp}
-                  className="flex flex-col gap-4 rounded-2xl border border-neutral-200 bg-white p-4 sm:flex-row sm:items-center"
+                  className="flex flex-col gap-4 rounded-2xl bg-white p-4 shadow-sm ring-1 ring-black/5 transition-shadow hover:shadow-md sm:flex-row sm:items-center"
                 >
                   <FoodImage
                     src={line.product.image}
                     emoji={line.product.emoji}
                     alt={line.product.name}
-                    className="h-20 w-20 shrink-0 rounded-xl"
+                    className="h-20 w-20 shrink-0 rounded-xl ring-1 ring-black/5"
                   />
 
                   <div className="min-w-0 flex-1">
-                    <h3 className="truncate font-bold text-ink">{line.product.name}</h3>
+                    <h3 className="truncate text-base font-bold text-ink">{line.product.name}</h3>
                     <p className="text-sm text-neutral-500">
                       {formatCurrency(line.product.price)} each
                     </p>
@@ -91,7 +91,7 @@ export default function CartPage() {
                       type="button"
                       onClick={() => removeItem(line.productId)}
                       aria-label={`Remove ${line.product.name} from cart`}
-                      className="grid h-9 w-9 shrink-0 cursor-pointer place-items-center rounded-full text-neutral-400 hover:bg-red-50 hover:text-red-500"
+                      className="grid h-9 w-9 shrink-0 cursor-pointer place-items-center rounded-full text-neutral-300 transition-colors hover:bg-red-50 hover:text-red-500"
                     >
                       <FontAwesomeIcon icon={faTrash} />
                     </button>
@@ -109,29 +109,29 @@ export default function CartPage() {
               variants={fadeInUp}
               initial="initial"
               animate="animate"
-              className="flex flex-col gap-5 rounded-3xl border border-neutral-200 bg-white p-6"
+              className="flex flex-col gap-5 rounded-3xl bg-white p-7 shadow-lg ring-1 ring-black/5 lg:sticky lg:top-28"
             >
-              <h3 className="text-ink">Order Summary</h3>
+              <h3 className="text-xs font-bold uppercase tracking-widest text-neutral-500">
+                Order Summary
+              </h3>
 
-              <div className="flex flex-col gap-2 border-b border-neutral-200 pb-4 text-sm text-neutral-600">
+              <div className="flex flex-col gap-2 border-b border-neutral-200 pb-5 text-sm text-neutral-600">
                 <div className="flex items-center justify-between">
                   <span>
                     Items ({count})
                   </span>
                   <span>{formatCurrency(subtotal)}</span>
                 </div>
-                <div className="flex items-center justify-between">
-                  <span>Delivery / Pickup</span>
-                  <span>Calculated at checkout</span>
-                </div>
               </div>
 
-              <div className="flex items-center justify-between text-lg">
+              <div className="flex items-center justify-between">
                 <span className="font-semibold text-ink">Subtotal</span>
-                <span className="font-extrabold text-ink">{formatCurrency(subtotal)}</span>
+                <span className="text-2xl font-extrabold text-ink">
+                  {formatCurrency(subtotal)}
+                </span>
               </div>
 
-              <Button type="button" variant="primary" size="lg" fullWidth>
+              <Button type="button" variant="primary" size="lg" fullWidth className="shadow-md">
                 Checkout
               </Button>
             </motion.div>

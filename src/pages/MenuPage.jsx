@@ -86,7 +86,7 @@ export default function MenuPage() {
               onChange={(e) => setQuery(e.target.value)}
               placeholder="Search the menu…"
               aria-label="Search the menu"
-              className="h-12 w-full rounded-full border border-neutral-200 bg-neutral-50 pl-11 pr-11 text-sm text-ink placeholder:text-neutral-400 transition-colors focus:border-brand-500 focus:bg-white focus:outline-none focus:ring-2 focus:ring-brand-500/20"
+              className="h-12 w-full rounded-full border border-neutral-200 bg-neutral-50 pl-11 pr-11 text-base text-ink placeholder:text-neutral-400 transition-colors focus:border-brand-500 focus:bg-white focus:outline-none focus:ring-2 focus:ring-brand-500/20"
             />
             {query && (
               <button
