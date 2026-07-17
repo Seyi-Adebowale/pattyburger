@@ -64,7 +64,7 @@ export default function ProductCard({ product, className, showBadge = true }) {
               src={product.image}
               emoji={product.emoji}
               alt={product.name}
-              className="aspect-[4/3] w-full transition-transform duration-500 group-hover:scale-[1.03]"
+              className="aspect-[3/2] w-full transition-transform duration-500 group-hover:scale-[1.03]"
             />
           </button>
 

@@ -21,7 +21,7 @@ export default function WhyChooseUs() {
   return (
     <Section spacing="sm" className="pt-0">
       {/* Heading — shown on mobile only, to match the desktop strip */}
-      <h2 className="mb-6 text-2xl lg:hidden">Why Choose Us?</h2>
+      <h2 className="mb-6 text-2xl lg:hidden">Why Pattyburger?</h2>
 
       <motion.div
         variants={staggerContainer}

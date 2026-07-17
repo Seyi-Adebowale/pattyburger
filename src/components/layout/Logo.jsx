@@ -16,7 +16,7 @@ export default function Logo({ tone = 'dark', className, onClick }) {
       aria-label="Pattyburger.ng — home"
       className={cn('flex min-w-0 shrink items-center gap-2', className)}
     >
-      <img src={logoMark} alt="" className="h-9 w-auto shrink-0 object-contain" />
+      <img src={logoMark} alt="" className="h-[3.75rem] w-auto shrink-0 object-contain lg:h-[4.5rem]" />
       <span className="font-display text-sm font-extrabold leading-tight tracking-tight min-[280px]:text-lg min-[280px]:leading-none sm:text-xl">
         <span className={tone === 'light' ? 'text-white' : 'text-ink'}>Patty</span>
         <span className="max-[279px]:block">

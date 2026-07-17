@@ -44,7 +44,7 @@ const hideOnError = (e) => {
   e.currentTarget.style.display = 'none'
 }
 
-const DRIP_FONT = { fontFamily: "'BPSHC', 'Poppins', sans-serif" }
+const DRIP_FONT = { fontFamily: "'BPSHC', 'Poppins', sans-serif", fontWeight: 700 }
 
 export default function Hero() {
   const dripFontReady = useDripFontReady()
@@ -149,7 +149,7 @@ export default function Hero() {
                       style={dripFontReady ? DRIP_FONT : undefined}
                       className={
                         dripFontReady
-                          ? 'text-[1.3em] leading-none tracking-wide text-accent-400 min-[400px]:text-[1.55em]'
+                          ? 'text-[1.3em] font-bold leading-none tracking-wide text-accent-400 min-[400px]:text-[1.55em]'
                           : ''
                       }
                     >
